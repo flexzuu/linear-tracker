@@ -26,7 +26,7 @@ func main() {
 	app := cocoa.NSApp_WithDidLaunch(func(n objc.Object) {
 		obj := cocoa.NSStatusBar_System().StatusItemWithLength(cocoa.NSVariableStatusItemLength)
 		obj.Retain()
-		title := "Issue Tracker"
+		title := SFSymbolsSpinner
 		btn := obj.Button()
 		btn.SetTitle(title)
 

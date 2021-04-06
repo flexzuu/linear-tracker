@@ -12,6 +12,11 @@ import (
 	"github.com/progrium/macdriver/objc"
 )
 
+const (
+	SFSymbolsTicket  = "􀪄" // ticket.fill 🎟
+	SFSymbolsSpinner = "􀖇" // hourglass ⌛️
+)
+
 func renderMenu(q linear.AssignedIssues, title string, menu cocoa.NSMenu, items map[string]cocoa.NSMenuItem, btn cocoa.NSStatusBarButton) {
 	itemsToRemove := map[string]struct{}{}
 	// we start off by marking all prev items as to delete
@@ -82,18 +87,18 @@ func renderMenu(q linear.AssignedIssues, title string, menu cocoa.NSMenu, items 
 
 	// update title based on how many issues are in our menu
 	if len(items) == 0 {
-		title = "No active Issues"
+		title = SFSymbolsTicket
 	} else if len(items) == 1 {
 		for k := range items {
 			for _, issue := range q.Viewer.AssignedIssues.Nodes {
 				if string(issue.ID) == k {
-					title = string(issue.Identifier)
+					title = fmt.Sprintf("%s - %s", SFSymbolsTicket, string(issue.Identifier))
 				}
 			}
 		}
 
 	} else {
-		title = fmt.Sprintf("%d active Issues", len(items))
+		title = fmt.Sprintf("%s (%d)", SFSymbolsTicket, len(items))
 	}
 	// update button title
 	btn.SetTitle(title)
