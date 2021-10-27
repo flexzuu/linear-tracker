@@ -22,6 +22,7 @@ type AssignedIssues struct {
 					ID   graphql.String `graphql:"id"`
 					Name graphql.String
 				}
+				URL graphql.String `graphql:"url"`
 			}
 		}
 	}

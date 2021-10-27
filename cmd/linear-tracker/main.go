@@ -20,10 +20,10 @@ func main() {
 	flag.Parse()
 
 	client := linear.NewClient(*authToken)
-
+	cocoa.TerminateAfterWindowsClose = false
 	runtime.LockOSThread()
-
-	app := cocoa.NSApp_WithDidLaunch(func(n objc.Object) {
+	var app cocoa.NSApplication
+	app = cocoa.NSApp_WithDidLaunch(func(n objc.Object) {
 		obj := cocoa.NSStatusBar_System().StatusItemWithLength(cocoa.NSVariableStatusItemLength)
 		obj.Retain()
 		title := SFSymbolsSpinner
@@ -42,7 +42,7 @@ func main() {
 				return
 			}
 			core.Dispatch(func() {
-				renderMenu(iss, title, menu, items, btn)
+				renderMenu(app, iss, title, menu, items, btn)
 			})
 		}
 

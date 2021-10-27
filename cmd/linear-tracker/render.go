@@ -17,7 +17,7 @@ const (
 	SFSymbolsSpinner = "􀖇" // hourglass ⌛️
 )
 
-func renderMenu(q linear.AssignedIssues, title string, menu cocoa.NSMenu, items map[string]cocoa.NSMenuItem, btn cocoa.NSStatusBarButton) {
+func renderMenu(app cocoa.NSApplication, q linear.AssignedIssues, title string, menu cocoa.NSMenu, items map[string]cocoa.NSMenuItem, btn cocoa.NSStatusBarButton) {
 	itemsToRemove := map[string]struct{}{}
 	// we start off by marking all prev items as to delete
 	for k := range items {
@@ -44,6 +44,8 @@ func renderMenu(q linear.AssignedIssues, title string, menu cocoa.NSMenu, items 
 				if err != nil {
 					log.Fatal(err)
 				}
+				fmt.Println(issue.URL)
+				// app.Send("openURL:", core.URL(string(issue.URL)))
 			})
 			existingMenu.SetAction(cbSel)
 			existingMenu.SetTarget(cb)
@@ -59,6 +61,8 @@ func renderMenu(q linear.AssignedIssues, title string, menu cocoa.NSMenu, items 
 				if err != nil {
 					log.Fatal(err)
 				}
+				fmt.Println(issue.URL)
+				// app.Send("openURL:", core.URL(string(issue.URL)))
 			})
 			item.SetAction(cbSel)
 			item.SetTarget(cb)
