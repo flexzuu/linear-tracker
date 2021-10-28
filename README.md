@@ -14,3 +14,8 @@ linear-tracker -token=<token>
 
 # how to create a token
 visit https://linear.app/settings/api and create a personal api key
+
+# how to keep alive
+
+- add a lauchd plist into your `~/Library/LaunchAgents/` folder
+- remember to replace the path, working dir, fullpath to binary and token
