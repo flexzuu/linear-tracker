@@ -19,3 +19,4 @@ visit https://linear.app/settings/api and create a personal api key
 
 - add a lauchd plist into your `~/Library/LaunchAgents/` folder
 - remember to replace the path, working dir, fullpath to binary and token
+- `launchctl load <path to plist>`
